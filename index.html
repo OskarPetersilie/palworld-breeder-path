@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Palworld Breeding Path Tool</title>
+
+    <meta name="title" content="Palworld Breeding Path Tool">
+    <meta name="description" content="A tool which shows you paths to target pals.">
+    <meta name="author" content="Oskar1504">
+
+    <meta property="og:title" content="Palworld Breeding Path Tool">
+    <meta property="og:description" content="A tool which shows you paths to target pals.">
+    <meta property="og:url" content="https://palword.otypes.de/breeder/">
+    <meta property="og:image" content="https://palword.otypes.de/breeder/og.jpg">
+
+    <link rel="stylesheet" href="./lib/pico.min.css">
+
+    <link rel="stylesheet" href="./css/pico-Theme.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/filter.css">
+
+    <link rel="stylesheet" href="./css/smaller-600.css">
+    <link rel="stylesheet" href="./css/smaller-300.css">
+
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/mermaid.min.js"></script>
+</head>
+<body>
+    <div id="app" class="container">
+        <h1>Palworld Breeding Path</h1>
+        <section class="wrapper">
+            <aside>
+                <fieldset>
+                    <legend>Select Available Pals</legend>
+                    <div v-for="(value, k) in pals" >
+                        <label >
+                            <input type="checkbox" :name="k" @click="setFilter(k)" :checked="available.includes(k)" />
+                            {{k}}
+                        </label>
+                    </div>
+                </fieldset>
+            </aside>
+            <main class="flex flex-col"  >
+                <fieldset>
+                    <label>
+                      Max iterations (3 is default and most of the paths get found)
+                      <input
+                        name="iterations"
+                        v-model="iterations"
+                      />
+                    </label>
+                    <label>
+                      Target Pal
+                      <select name="target" aria-label="Select your target pal..." required v-model="target">
+                        <option selected disabled value="">
+                          Select your target pal...
+                        </option>
+                        <option v-for="(value, k) in pals" :value="k">{{k}}</option>
+                      </select>
+                    </label>
+                    <label>
+                        Available Pal's (select/check on the left side)
+                        <input
+                          name="available"
+                          disabled
+                          v-model="available"
+                        />
+                      </label>
+                  </fieldset>
+                  <button @click="start()">Start</button>
+                  <div >
+                    <pre id="mermaid" class="mermaid">
+                        graph TD;
+                            Grizzbolt-->Astegon;
+                            Orserk-->Astegon;
+                            Rayhound-->Grizzbolt;
+                            Mossanda-->Grizzbolt;
+                            Relaxaurus-->Orserk;
+                            Grizzbolt-->Orserk;
+                            Relaxaurus-->Rayhound;
+                            Woolipop-->Rayhound;
+                            Relaxaurus-->Mossanda;
+                            Incineram-->Mossanda;
+                            Relaxaurus-->Incineram;
+                            Mozzarina-->Incineram;
+                    </pre>
+                  </div>
+                  <div v-if="!result.foundTarget">
+                    <article  class="warning">Found no path. Change Available Pals. Some Pal's can not be breeded. Legendary pals can only be breeded with at least one other legenday Pal.</article>
+                  </div>
+            </main>
+        </section>
+        <footer class="flex flex-2">
+          <div>
+            <h4>Used technologies</h4>
+            <ul>
+                <li>Style <a href="https://v2.picocss.com" target="_blank">Pico css</a></li>
+                <li>Render Framework <a href="https://v2.vuejs.org" target="_blank">Vue 2</a></li>
+                <li>Pal Data <a href="https://www.reddit.com/r/Palworld/comments/19d98ws/spreadsheet_all_breeding_combinations_datamined/?sort=new" target="_blank">Reddit thread/Google spreadsheet</a></li>
+                <li>Tool created by Oskar1504</li>
+            </ul>
+          </div>
+          <div>
+            <h4>Changelog</h4>
+            <ul>
+              <li>30.01.2024 | added localStorage logic to save available pals on reload</li>
+              <li>30.01.2024 | fixed issue where uniqueCombos where displayed</li>
+              <li>29.01.2024 | Release</li>
+            </ul>
+          </div>
+        </footer>
+    </div>
+    <script src="./data/palOrder.js"></script>
+    <script src="./data/pals.js"></script>
+    <script src="./data/uniqueCombos.js"></script>
+    <script src="./js/depBreederModule.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+nav {
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    padding-top: .15rem;
+    padding-bottom: .15rem;
+}
+
+nav h1 {
+    margin-bottom: .15rem;
+}
+
+nav .active {
+    border-radius: calc(0.25rem * 2);
+    border: 2px solid var(--pico-primary-background);
+}

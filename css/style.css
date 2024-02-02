@@ -1,0 +1,121 @@
+.flex {
+    display: flex;
+    flex-direction: row;
+}
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-2 {
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.flex-2 article {
+    flex: 40%;
+    margin-bottom: 1rem;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+.primary {
+    background-color: lightgreen;
+}
+.warning {
+    background-color: rgb(186, 145, 0);
+    color: black;
+}
+
+article.warning {
+    margin-bottom: 0rem;
+    margin-top: 0rem;
+    padding: 2rem;
+}
+
+.danger {
+    background-color: lightcoral;
+}
+
+.justify-content-between {
+    justify-content: space-between;
+}
+
+@media only screen and (max-width: 600px) {
+    .flex-md-row {
+        flex-direction:column
+    }
+
+}
+
+.fullScreenEmoij {
+    font-weight: bolder;
+    font-size: 1.2rem;
+}
+
+.active .fullScreenEmoij {
+    color: var(--pico-primary-background);
+    font-size: 1.2rem;
+}
+
+aside fieldset {
+    overflow-y: scroll;
+    max-height: 90vh;
+}
+
+.sticky {
+    position: fixed;
+    top: 90%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 80%;
+    max-width: 80%;
+    position: fixed;
+  }
+
+ 
+
+form input.sm {
+    max-width: 55%;
+}
+
+header {
+    margin-bottom: 1rem;
+}
+
+
+details > div {
+    margin-inline-start: .6rem;
+    padding-inline-start: .6rem;
+    border-left: .1rem solid lightgray;
+    margin-top: calc(var(--pico-spacing) * 0.33);
+    padding-top: calc(var(--pico-spacing) * 0.66);
+}
+
+details[open]>summary {
+    margin-bottom: unset;
+}
+
+blockquote .flex > p {
+    margin-bottom: unset;
+}
+
+.click {
+    border: 2px solid #fff;
+    border-radius: .25rem;
+}
+
+.clickAnimation {
+    animation-name: example;
+    animation-duration: 3.5s;
+}
+
+@keyframes example {
+    from {
+        border: 2px solid var(--pico-primary-background);
+    }
+    to {
+        border: 2px solid #fff;
+    }
+  }
